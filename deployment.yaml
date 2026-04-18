@@ -15,5 +15,6 @@ spec:
       containers:
       - name: my-app
         image: sujith1ns/devops-html:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
