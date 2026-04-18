@@ -29,22 +29,22 @@ pipeline {
         }
 
         stage('Docker Push') {
-            steps {
-                withCredentials([usernamePassword(
-                    credentialsId: 'docker-hub-creds',
-                    usernameVariable: 'sujith1ns',
-                    passwordVariable: 'Sujith@8082'
-                )]) {
-                    sh '''
-                    echo "Logging into Docker Hub..."
-                    echo $PASS | docker login -u $USER --password-stdin
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'docker-hub-creds',
+            usernameVariable: 'USER',
+            passwordVariable: 'PASS'
+        )]) {
+            sh '''
+            echo "Logging into Docker Hub..."
+            echo "$PASS" | docker login -u "$USER" --password-stdin
 
-                    echo "Pushing Docker image..."
-                    docker push $IMAGE_NAME:latest
-                    '''
-                }
-            }
+            echo "Pushing image..."
+            docker push sujith1ns/devops-html:latest
+            '''
         }
+    }
+}
 
         stage('Deploy') {
             steps {
