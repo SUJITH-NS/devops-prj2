@@ -9,10 +9,10 @@ pipeline {
     stages {
 
         stage('Checkout') {
-            steps {
-                git 'https://github.com/SUJITH-NS/devops-prj2'
-            }
-        }
+    steps {
+        git branch: 'main', url: 'https://github.com/SUJITH-NS/devops-prj2'
+    }
+}
 
         stage('Build') {
             steps {
